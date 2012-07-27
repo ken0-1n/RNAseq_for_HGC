@@ -1,6 +1,6 @@
 # install RNA pipeline
 
-dataset: directory hg19_install db_install
+dataset: directory hg19_install db_install hg19_bowtie
 dataset2: directory hg19_install2 db_install2 hg19_bowtie
 
 directory:
