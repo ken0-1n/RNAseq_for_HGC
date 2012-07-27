@@ -4,44 +4,17 @@
 # @since 2012
 #
 
-write_usage() {
-  echo ""
-  echo "Usage: `basename $0` <output directory> <tag> [<rna.env>]"
-  echo ""
-}
-
 readonly OUTPUTDIR=$1
 readonly TAG=$2
-rna_env=$3
 
-readonly DIR=`dirname ${0}`
-
-if [ $# -le 1 -o $# -ge 4 ]; then
-  echo "wrong number of arguments"
-  write_usage
-  exit 1
-fi
-
-if [ $# -eq 2 ]; then
-  rna_env=${DIR}/../conf/rna.env
-fi
-
-if [ $# -eq 3 ]; then
-  if [ ! -f ${rna_env} ]; then
-    echo "${rna_env} dose not exists"
-    write_usage
-    exit 1
-  fi
-fi
-
-
-source ${rna_env}
+source ${RNA_ENV}
 source ${UTIL}
 
+check_num_args $# 2
 
-INPUTPATH=${OUTPUTDIR}/sequence
-OUTPUTPATH=${OUTPUTDIR}/fusion
-CUFFPATH=${OUTPUTDIR}/cufflink
+readonly INPUTPATH=${OUTPUTDIR}/sequence
+readonly OUTPUTPATH=${OUTPUTDIR}/fusion
+readonly CUFFPATH=${OUTPUTDIR}/cufflink
 
 
 if [ -f ${CUFFPATH}/transcripts.gtf ]; then

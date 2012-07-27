@@ -56,6 +56,7 @@ readonly JOB_JUNC_BLAT=juncBlat.${TAG}
 readonly JOB_CAT_FUSION=catFusion.${TAG}
 readonly JOB_MAKE_SEQ=makeSeq.${TAG}
 readonly JOB_MAKE_CONTIG=makeContig.${TAG}
+readonly JOB_MAKE_PRIMER=makePrimer.${TAG}
 
 
 echo "qsub -v RNA_ENV=${rna_env} -t 1-${FILECOUNT}:1 -l s_vmem=16G,mem_req=16 -N ${JOB_JUNC_BLAT} ${LOGSTR} ${COMMAND_FUSION}/juncBlat.sh ${OUTPUTDIR}"
@@ -70,4 +71,6 @@ qsub -v RNA_ENV=${rna_env} -t 1-${FILECOUNT}:1 -l s_vmem=4G,mem_req=4 -N ${JOB_M
 echo "qsub -v RNA_ENV=${rna_env} -l s_vmem=8G,mem_req=8 -N ${JOB_MAKE_CONTIG} -hold_jid ${JOB_MAKE_SEQ} ${LOGSTR} ${COMMAND_FUSION}/makeContig.sh ${OUTPUTDIR} ${TAG}"
 qsub -v RNA_ENV=${rna_env} -l s_vmem=8G,mem_req=8 -N ${JOB_MAKE_CONTIG} -hold_jid ${JOB_MAKE_SEQ} ${LOGSTR} ${COMMAND_FUSION}/makeContig.sh ${OUTPUTDIR} ${TAG}
 
+echo "qsub -v RNA_ENV=${rna_env} -l s_vmem=8G,mem_req=8 -N ${JOB_MAKE_PRIMER} -hold_jid ${JOB_MAKE_CONTIG} ${LOGSTR} ${COMMAND_FUSION}/makePrimer.sh ${OUTPUTDIR} ${TAG}"
+qsub -v RNA_ENV=${rna_env} -l s_vmem=8G,mem_req=8 -N ${JOB_MAKE_PRIMER} -hold_jid ${JOB_MAKE_CONTIG} ${LOGSTR} ${COMMAND_FUSION}/makePrimer.sh ${OUTPUTDIR} ${TAG}
 
