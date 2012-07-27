@@ -9,18 +9,16 @@ write_usage() {
   echo "Usage: `basename $0` [options] <input directory> <output directory> <tag> [<rna.env>]"
   echo ""
   echo "Options: -s converts solexa quality score to sanger quality score"
-  echo "         -a removes adoupter sequence"
   echo ""
 }
 
 
 flg_sol2sanger="FALSE"
 flg_cut_adoupt="FALSE"
-while getopts sa opt
+while getopts s opt
 do
   case ${opt} in
   s) flg_sol2sanger="TRUE";;
-  a) flg_cut_adoupt="TRUE";;
   \?)
     echo "invalid option"
     write_usage
