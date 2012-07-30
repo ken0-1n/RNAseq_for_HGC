@@ -44,8 +44,8 @@ hg19_header:
 # db                                                                                           #
 ################################################################################################
 
-db_install: db_decompress db_info db_fasta db_ln
-db_install2: db_info db_fasta db_ln
+db_install: db_decompress db_info db_fasta db_ln db_chain
+db_install2: db_info db_fasta db_ln db_chain
 
 db_decompress:
 	gunzip ../db/fusion/knownGene.txt.gz
@@ -67,6 +67,9 @@ db_fasta:
 db_ln:
 	ln -f ../db/fusion/knownGene.txt ../ref/knownGene_bowtie/knownGene.txt
 
+db_chain:
+	gunzip ../db/fusion/chainSelf.txt.gz
+	perl script/makeChainSelfBedpe.pl ../db/fusion/chainSelf.txt > ../db/fusion/chainSelf.bedpe
 
 ################################################################################################
 # For Bowtie                                                                                   #

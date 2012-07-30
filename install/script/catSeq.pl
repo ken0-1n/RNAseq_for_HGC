@@ -1,5 +1,9 @@
 #! /usr/local/bin/perl
 #
+# Copyright Human Genome Center, Institute of Medical Science, the University of Tokyo
+# @since 2012
+#
+
 use strict;
 
 my $input = $ARGV[0];
