@@ -51,6 +51,7 @@ db_decompress:
 	gunzip ../db/fusion/knownGene.txt.gz
 	gunzip ../db/fusion/refGene.txt.gz
 	gunzip ../db/fusion/ensGene.txt.gz
+	gunzip ../db/fusion/chainSelf.txt.gz
 
 db_info:
 	perl script/makeSpliceInfo_knownGene.pl ../db/fusion/knownGene.txt > ../db/knownGene.info
@@ -68,7 +69,6 @@ db_ln:
 	ln -f ../db/fusion/knownGene.txt ../ref/knownGene_bowtie/knownGene.txt
 
 db_chain:
-	gunzip ../db/fusion/chainSelf.txt.gz
 	perl script/makeChainSelfBedpe.pl ../db/fusion/chainSelf.txt > ../db/fusion/chainSelf.bedpe
 
 ################################################################################################
