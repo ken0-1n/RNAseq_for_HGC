@@ -63,7 +63,8 @@ db_fasta:
 	perl script/listGenes.pl ../db/fusion/refGene.txt ../db/fusion/ensGene.txt ../db/fusion/knownGene.txt > ../db/fusion/gene.bed
 	perl script/listCodingInfo.pl ../db/fusion/refGene.txt ../db/fusion/ensGene.txt ../db/fusion/knownGene.txt > ../db/fusion/codingInfo.txt
 	../bin/BEDTools-Version-2.14.3/bin/fastaFromBed -fi ../ref/hg19/hg19.fasta -bed ../db/fusion/exon.proc.bed -fo ../db/fusion/exon.proc.tmp.fasta -tab -name
-	perl script/catSeq.pl ../db/fusion/exon.proc.tmp.fasta > ../db/fusion/allGenes.fasta
+	perl script/catSeq.pl ../db/fusion/exon.proc.tmp.fasta > ../db/fusion/allGenes.tmp.fasta
+	perl script/changeDuplicateID.pl ../db/fusion/allGenes.tmp.fasta > ../db/fusion/allGenes.fasta
 
 db_ln:
 	ln -f ../db/fusion/knownGene.txt ../ref/knownGene_bowtie/knownGene.txt
