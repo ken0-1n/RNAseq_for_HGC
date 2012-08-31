@@ -7,9 +7,9 @@
 use strict;
 use warnings;
 
-print "final junction" . "\t" . "primary junction" . "\t" . "\#consistent read1 (primary)" . "\t" . "\#consistent read2 (primary)" . "\t";
-print "pair junction" . "\t" . "\#consistent read1 (pair)" . "\t" . "\#consistent read2 (pair)" . "\t";
-print "junction sequence" . "\t" . "gene (primary)" . "\t" . "gene (pair)" . "\t" . "known edge (primary)"  . "\t" . "known edge (pair)" . "\t";
+print "final junction" . "\t" . "first junction" . "\t" . "\#consistent read1 (first)" . "\t" . "\#consistent read2 (first)" . "\t";
+print "second junction" . "\t" . "\#consistent read1 (second)" . "\t" . "\#consistent read2 (second)" . "\t";
+print "junction sequence" . "\t" . "gene (first)" . "\t" . "gene (second)" . "\t" . "known edge (first)"  . "\t" . "known edge (second)" . "\t";
 print "chain self" . "\t" . "contig" . "\t" . "contig1" . "\t" . "contig2" . "\t" . "multi map1" . "\t" . "cross map1" . "\t" . "multi map2" . "\t" . "cross map2" . "\t" . "pairNum" . "\t";
 print "extended contig1" . "\t" . "extended contig2" . "\t" . "inframe pair" . "\t" . "gene region1" . "\t" . "gene region2" . "\n";
 
