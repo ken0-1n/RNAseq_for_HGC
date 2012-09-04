@@ -68,8 +68,8 @@ while read LINE; do
   check_error $?
 
   # assemble the sequences via CAP3
-  echo "${CAP3_PATH}/cap3 ${TARGETDIR}/tmp_contig/candSeq_${num}.fa -p 66 -o 16> ${TARGETDIR}/tmp_contig/candSeq_${num}.contig"
-  ${CAP3_PATH}/cap3 ${TARGETDIR}/tmp_contig/candSeq_${num}.fa -p 66 -o 16> ${TARGETDIR}/tmp_contig/candSeq_${num}.contig
+  echo "${CAP3_PATH}/cap3 ${TARGETDIR}/tmp_contig/candSeq_${num}.fa -p 66 -o 16 > ${TARGETDIR}/tmp_contig/candSeq_${num}.contig"
+  ${CAP3_PATH}/cap3 ${TARGETDIR}/tmp_contig/candSeq_${num}.fa -p 66 -o 16 > ${TARGETDIR}/tmp_contig/candSeq_${num}.contig
   check_error $?
 
   # alignment the junction sequence to the set of contigs generated via CAP3 and select the best contig
