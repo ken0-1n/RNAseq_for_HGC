@@ -34,8 +34,8 @@ perl ${COMMAND_FUSION}/getCandJunc.pl ${TARGETDIR}/tmp/temp${NUM}.sam 20 16 > ${
 check_error $?
 
 
-echo "${BLAT_PATH}/blat -stepSize=5 -repMatch=2253 -ooc=${BLAT_OOC} ${BLAT_REF} ${TARGETDIR}/tmp/candJunc${NUM}.fa ${TARGETDIR}/tmp/candJunc${NUM}.psl"
-${BLAT_PATH}/blat -stepSize=5 -repMatch=2253 -ooc=${BLAT_OOC} ${BLAT_REF} ${TARGETDIR}/tmp/candJunc${NUM}.fa ${TARGETDIR}/tmp/candJunc${NUM}.psl
+echo "${BLAT_PATH}/blat -stepSize=5 -repMatch=2253 -minScore=20 -ooc=${BLAT_OOC} ${BLAT_REF} ${TARGETDIR}/tmp/candJunc${NUM}.fa ${TARGETDIR}/tmp/candJunc${NUM}.psl"
+${BLAT_PATH}/blat -stepSize=5 -repMatch=2253 -minScore=20 -ooc=${BLAT_OOC} ${BLAT_REF} ${TARGETDIR}/tmp/candJunc${NUM}.fa ${TARGETDIR}/tmp/candJunc${NUM}.psl
 check_error $?
 
 
