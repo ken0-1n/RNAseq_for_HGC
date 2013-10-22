@@ -9,7 +9,6 @@
 readonly OUTPUTDIR=$1
 readonly TAG=$2
 
-# RNA_ENV=./../conf/rna.env # for test
 source ${RNA_ENV}
 source ${UTIL}
 
@@ -19,7 +18,6 @@ readonly INPUTDIR=${OUTPUTDIR}/sequence
 readonly FUSIONDIR=${OUTPUTDIR}/fusion
 readonly CUFFDIR=${OUTPUTDIR}/cufflink
 
-# : <<'#__COMMENT_OUT__'
 
 if [ -f ${CUFFDIR}/transcripts.gtf ]; then
   # convert .gtf fiile to .bed file
@@ -98,7 +96,6 @@ echo "perl ${COMMAND_FUSION}/addGeneral.pl ${FUSIONDIR}/juncList_anno9.txt ${FUS
 perl ${COMMAND_FUSION}/addGeneral.pl ${FUSIONDIR}/juncList_anno9.txt ${FUSIONDIR}/comb2geneRegion.txt 2 > ${FUSIONDIR}/juncList_anno10.txt
 check_error $?
 
-#__COMMENT_OUT__
 echo "perl ${COMMAND_FUSION}/addHeader.pl ${FUSIONDIR}/juncList_anno10.txt > ${FUSIONDIR}/${TAG}.fusion.all.txt"
 perl ${COMMAND_FUSION}/addHeader.pl ${FUSIONDIR}/juncList_anno10.txt > ${FUSIONDIR}/${TAG}.fusion.all.txt
 check_error $?
