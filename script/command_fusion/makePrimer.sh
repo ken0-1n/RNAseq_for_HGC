@@ -9,6 +9,7 @@
 readonly OUTPUTDIR=$1
 readonly TAG=$2
 
+# RNA_ENV=./../conf/rna.env # for test
 source ${RNA_ENV}
 source ${UTIL}
 
@@ -18,6 +19,7 @@ readonly INPUTDIR=${OUTPUTDIR}/sequence
 readonly FUSIONDIR=${OUTPUTDIR}/fusion
 readonly CUFFDIR=${OUTPUTDIR}/cufflink
 
+# : <<'#__COMMENT_OUT__'
 
 if [ -f ${CUFFDIR}/transcripts.gtf ]; then
   # convert .gtf fiile to .bed file
@@ -44,7 +46,6 @@ else
   echo "cp ${ALLGENEREF} ${FUSIONDIR}/transcripts.allGene_cuff.fasta"
   cp ${ALLGENEREF} ${FUSIONDIR}/transcripts.allGene_cuff.fasta
   check_error $?
-
 fi
 
 # mapping the contigs to the .fasta file
@@ -62,10 +63,15 @@ if [ -f ${FUSIONDIR}/transcripts.allGene_cuff.fasta.fai ]; then
   rm -rf ${FUSIONDIR}/transcripts.allGene_cuff.fasta.fai
 fi
 
+if [ -s ${FUSIONDIR}/juncContig_allGene_cuff.bed ]; then
+  echo "${BEDTOOLS_PATH}/fastaFromBed -fi ${FUSIONDIR}/transcripts.allGene_cuff.fasta -bed ${FUSIONDIR}/juncContig_allGene_cuff.bed -fo ${FUSIONDIR}/juncContig_allGene_cuff.txt -tab -name -s"
+  ${BEDTOOLS_PATH}/fastaFromBed -fi ${FUSIONDIR}/transcripts.allGene_cuff.fasta -bed ${FUSIONDIR}/juncContig_allGene_cuff.bed -fo ${FUSIONDIR}/juncContig_allGene_cuff.txt -tab -name -s
+  check_error $?
 
-echo "${BEDTOOLS_PATH}/fastaFromBed -fi ${FUSIONDIR}/transcripts.allGene_cuff.fasta -bed ${FUSIONDIR}/juncContig_allGene_cuff.bed -fo ${FUSIONDIR}/juncContig_allGene_cuff.txt -tab -name -s"
-${BEDTOOLS_PATH}/fastaFromBed -fi ${FUSIONDIR}/transcripts.allGene_cuff.fasta -bed ${FUSIONDIR}/juncContig_allGene_cuff.bed -fo ${FUSIONDIR}/juncContig_allGene_cuff.txt -tab -name -s
-check_error $?
+else
+  echo "echo -n > ${FUSIONDIR}/juncContig_allGene_cuff.txt"
+  echo -n > ${FUSIONDIR}/juncContig_allGene_cuff.txt
+fi
 
 
 echo "perl ${COMMAND_FUSION}/summarizeExtendedContig.pl ${FUSIONDIR}/juncList_anno7.txt ${FUSIONDIR}/juncContig_allGene_cuff.txt | uniq > ${FUSIONDIR}/comb2eContig.txt"
@@ -92,6 +98,7 @@ echo "perl ${COMMAND_FUSION}/addGeneral.pl ${FUSIONDIR}/juncList_anno9.txt ${FUS
 perl ${COMMAND_FUSION}/addGeneral.pl ${FUSIONDIR}/juncList_anno9.txt ${FUSIONDIR}/comb2geneRegion.txt 2 > ${FUSIONDIR}/juncList_anno10.txt
 check_error $?
 
+#__COMMENT_OUT__
 echo "perl ${COMMAND_FUSION}/addHeader.pl ${FUSIONDIR}/juncList_anno10.txt > ${FUSIONDIR}/${TAG}.fusion.all.txt"
 perl ${COMMAND_FUSION}/addHeader.pl ${FUSIONDIR}/juncList_anno10.txt > ${FUSIONDIR}/${TAG}.fusion.all.txt
 check_error $?
